@@ -1,0 +1,1 @@
+// TODO: displays the spending patterns - where the capital spent is allocated

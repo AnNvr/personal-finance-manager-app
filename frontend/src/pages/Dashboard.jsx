@@ -1,0 +1,8 @@
+// TODO: Organise the overview of the user's financial status
+
+
+export default function Dashboard() {
+    return (
+        <h1>This is the Dashboard</h1>
+    )
+}
