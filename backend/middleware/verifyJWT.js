@@ -4,12 +4,12 @@ import jwt from "jsonwebtoken";
 
 export const verifyJWT = (req, res, next) => {
     // server expects authorisation in the header of the req
-    console.log(req.headers)
+    console.log(req.headers);
 
     const authenticationInHeader =
         req.headers.authorization || req.headers.Authorization;
-        
-        console.log(`Token ricevuto: ${authenticationInHeader}`)
+
+    console.log(`Token ricevuto: ${authenticationInHeader}`);
 
     if (!authenticationInHeader?.startsWith("Bearer "))
         return res.sendStatus(401); // No token provided
@@ -21,7 +21,7 @@ export const verifyJWT = (req, res, next) => {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
         if (err) {
             console.log(`Errore nella verifica del token: ${err}`);
-            res.sendStatus(403); // Invalid token
+            return res.sendStatus(403); // Invalid token
         } else {
             console.log(`Token verificato: ${JSON.stringify(decoded)}`);
             req.user = decoded.UserInfo.username;

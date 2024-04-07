@@ -26,7 +26,7 @@ export async function authController(req, res) {
     // with the password of the existing user
     const matchPassword = await bcrypt.compare(password, existingUser.password);
     if (matchPassword) {
-        const roles = Object.values(existingUser.roles);
+        const roles = Object.values(existingUser.roles).filter(Boolean);
 
         // server creates tokens
         const accessToken = jwt.sign(
