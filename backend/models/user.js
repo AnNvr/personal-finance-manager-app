@@ -4,22 +4,23 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     roles: {
         User: {
             type: String,
-            default: "Member"
+            default: "Member",
+            enum: ["Member", "Admin"]
         },
-        Admin: String
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
-    refreshToken: String
-})
+    refreshToken: String,
+});
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model("User", userSchema);
 
-export default User
+export default User;
